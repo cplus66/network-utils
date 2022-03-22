@@ -1,6 +1,12 @@
 # network-utils
 Network Monitor Utilities
 
+## Usage
+
+```
+Usage: ./net-mon.sh
+```
+
 ## Output Log Format
 Log Filename: /usr/local/AgentService/logs/NetworkMonitor.txt
 
@@ -16,16 +22,21 @@ status: PASSED | FAILED | INFO | WARN
 
 ## Monitor Network Availability
 
-###  Ethernet Interface
+###  Ethernet Interface (L2)
 
 ```
-ls /sys/class/net/
 ip addr
 ip route
 ifconfig -a
 ETH=$(ifconfig | grep eth | awk -F ":" '{print $1}')
 nmcli -colors no dev
 nmcli -colors no dev show $ETH
+```
+
+### DHCP (L3)
+
+```
+nmcli -f dhcp4 dev show $ETH
 ```
 
 ###  Gateway (L3)
@@ -49,11 +60,6 @@ cat /etc/resolv.conf
 ping www.google.com
 ```
 
-### DHCP
-
-```
-nmcli -f dhcp4 dev show $ETH
-```
 
 ### Network Manager
 
