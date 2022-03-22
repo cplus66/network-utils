@@ -15,7 +15,7 @@ Log Filename: /usr/local/AgentService/logs/NetworkMonitor.txt
 
 timestamp: format "%Y-%m-%d %H:%M:%S"
 hostname: $(hostname)
-object: ethernet | gateway | public-ip | dns | dhcp | network-manager | service | firewall 
+object: ethernet | dhcp | gateway | public-ip | dns | network-manager | service | firewall
 status: PASSED | FAILED | INFO | WARN
 ```
 
@@ -67,7 +67,7 @@ nmcli -f all dev show $ETH
 netstat -na
 ```
 
-###  Firmware Setting
+###  Firewall Setting
 ```
 iptables -nL
 iptables -t nat -nL
